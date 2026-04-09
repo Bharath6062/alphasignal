@@ -7,7 +7,8 @@ load_dotenv()
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 def get_engine():
-    url= f"postgresql://postgres:{DB_PASSWORD}@localhost:5432/alphasignal"
+    DB_HOST = os.getenv("DB_HOST", "localhost")
+    url = f"postgresql://postgres:{DB_PASSWORD}@{DB_HOST}:5432/alphasignal"
     engine = create_engine(url)
     return engine
 def load_prices(df: pd.DataFrame):
